@@ -1,4 +1,5 @@
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
+import 'package:arcore_flutter_plugin_example/photo_page.dart';
 import 'package:flutter/material.dart';
 
 class AssetsObject extends StatefulWidget {
@@ -10,6 +11,11 @@ class _AssetsObjectState extends State<AssetsObject> {
   ArCoreController arCoreController;
 
   String objectSelected;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +38,18 @@ class _AssetsObjectState extends State<AssetsObject> {
                 },
               ),
             ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: IconButton(
+                padding: EdgeInsets.only(bottom: 24),
+                icon: Icon(Icons.album_outlined,size: 32,color: Colors.white,),
+                onPressed: () {
+                  arCoreController.snapshot().then((value) {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => PhotoPage(path: value)));
+                  });
+                },
+              ),
+            )
           ],
         ),
       ),
@@ -57,8 +75,7 @@ class _AssetsObjectState extends State<AssetsObject> {
     } else {
       showDialog<void>(
         context: context,
-        builder: (BuildContext context) =>
-            AlertDialog(content: Text('Select an object!')),
+        builder: (BuildContext context) => AlertDialog(content: Text('Select an object!')),
       );
     }
   }
@@ -149,8 +166,7 @@ class _ListObjectSelectionState extends State<ListObjectSelection> {
                 ),
               ),
               child: Container(
-                color:
-                    selected == gifs[index] ? Colors.red : Colors.transparent,
+                color: selected == gifs[index] ? Colors.red : Colors.transparent,
                 padding: selected == gifs[index] ? EdgeInsets.all(8.0) : null,
                 child: Image.asset(gifs[index]),
               ),

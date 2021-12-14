@@ -10,6 +10,7 @@ class AutoDetectPlane extends StatefulWidget {
 class _AutoDetectPlaneState extends State<AutoDetectPlane> {
   ArCoreController arCoreController;
   ArCoreNode node;
+  bool isAdded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +40,17 @@ class _AutoDetectPlaneState extends State<AutoDetectPlane> {
   }
 
   Future _addSphere(ArCoreController controller, ArCorePlane plane) async {
-    final ByteData textureBytes = await rootBundle.load('assets/earth.jpg');
-
-    final material = ArCoreMaterial(
-        color: Color.fromARGB(120, 66, 134, 244),
-        textureBytes: textureBytes.buffer.asUint8List());
-    final sphere = ArCoreSphere(
-      materials: [material],
-      radius: 0.1,
-    );
-    node = ArCoreNode(
-        shape: sphere,
-        position: plane.centerPose.translation,
-        rotation: plane.centerPose.rotation);
-    controller.addArCoreNodeWithAnchor(node);
+    if (!isAdded) {
+      final toucanoNode = ArCoreReferenceNode(
+          name: 'assets/TocoToucan.gif',
+          object3DFileName: 'toucan.sfb',
+          position: plane.centerPose.translation,
+          rotation: plane.centerPose.rotation);
+      controller.addArCoreNodeWithAnchor(toucanoNode);
+      setState(() {
+        isAdded = true;
+      });
+    }
   }
 
   @override
