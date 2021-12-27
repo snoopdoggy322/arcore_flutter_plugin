@@ -1,5 +1,6 @@
 import 'package:arcore_flutter_plugin_example/screens/augmented_faces.dart';
 import 'package:arcore_flutter_plugin_example/screens/augmented_images.dart';
+import 'package:arcore_flutter_plugin_example/screens/drone_detect_plane.dart';
 import 'package:arcore_flutter_plugin_example/screens/image_object.dart';
 import 'package:arcore_flutter_plugin_example/screens/matri_3d.dart';
 import 'package:arcore_flutter_plugin_example/screens/multiple_augmented_images.dart';
@@ -9,7 +10,6 @@ import 'screens/custom_object.dart';
 import 'screens/runtime_materials.dart';
 import 'screens/texture_and_rotation.dart';
 import 'screens/assets_object.dart';
-import 'screens/auto_detect_plane.dart';
 import 'screens/remote_object.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
           ListTile(
             onTap: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => AutoDetectPlane()));
+                  MaterialPageRoute(builder: (context) => DroneDetectPlane()));
             },
             title: Text("Plane detect handler"),
           ),

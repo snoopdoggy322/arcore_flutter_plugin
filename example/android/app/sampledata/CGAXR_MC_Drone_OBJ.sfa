@@ -1,10 +1,10 @@
 {
   materials: [
     {
-      name: 'initialShadingGroup',
+      name: 'AluminiumSG',
       parameters: [
         {
-          baseColor: 'Andy_Diffuse',
+          baseColor: null,
         },
         {
           baseColorTint: [
@@ -34,16 +34,10 @@
       'Orientation',
     ],
     collision: {},
-    file: 'sampledata/Andy.obj',
-    name: 'Andy',
+    file: 'sampledata/CGAXR_MC_Drone_OBJ.obj',
+    name: 'CGAXR_MC_Drone_OBJ',
     recenter: 'root',
+    scale: 0.020052,
   },
-  samplers: [
-    {
-      file: 'sampledata/Andy_Diffuse.png',
-      name: 'Andy_Diffuse',
-      pipeline_name: 'Andy_Diffuse.png',
-    },
-  ],
   version: '0.54:2',
 }

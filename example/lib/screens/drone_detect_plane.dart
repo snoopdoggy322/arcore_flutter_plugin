@@ -2,27 +2,29 @@ import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class AutoDetectPlane extends StatefulWidget {
+class DroneDetectPlane extends StatefulWidget {
   @override
-  _AutoDetectPlaneState createState() => _AutoDetectPlaneState();
+  _DroneDetectPlaneState createState() => _DroneDetectPlaneState();
 }
 
-class _AutoDetectPlaneState extends State<AutoDetectPlane> {
+class _DroneDetectPlaneState extends State<DroneDetectPlane> {
   ArCoreController arCoreController;
   ArCoreNode node;
   bool isAdded = false;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plane detect handler'),
+    return  Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: BackButton(
         ),
-        body: ArCoreView(
-          onArCoreViewCreated: _onArCoreViewCreated,
-          enableUpdateListener: true,
-        ),
+      ),
+      body: ArCoreView(
+        onArCoreViewCreated: _onArCoreViewCreated,
+        enableUpdateListener: true,
       ),
     );
   }
@@ -43,7 +45,7 @@ class _AutoDetectPlaneState extends State<AutoDetectPlane> {
     if (!isAdded) {
       final toucanoNode = ArCoreReferenceNode(
           name: 'assets/TocoToucan.gif',
-          object3DFileName: 'toucan.sfb',
+          object3DFileName: 'CGAXR_MC_Drone_OBJ.sfb',
           position: plane.centerPose.translation,
           rotation: plane.centerPose.rotation);
       controller.addArCoreNodeWithAnchor(toucanoNode);
